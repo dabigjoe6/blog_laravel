@@ -1,3 +1,3 @@
 <nav class="navbar navbar-dark bg-dark">
-	<span class="navbar-brand mb-0 h1">Blog</span>
+	<a href="/" class="navbar-brand mb-0 h1">Blog</a>
 </nav>

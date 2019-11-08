@@ -2,7 +2,10 @@
 
 @section('content')
 	<div>
-		<h1 class="mb-5">Posts</h1>
+		<div class="d-flex justify-content-between align-items-start">
+			<h1 class="mb-5">Posts</h1>
+			<a href="/post/new" class="btn btn-primary">New Post</a>
+		</div>
 		<ul class="list-group">
 			@foreach($posts as $post) 
 			<li class="list-group-item">

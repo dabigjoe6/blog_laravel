@@ -13,6 +13,7 @@
     <body>
 			@include('layout.header')
 		 	<div class="container pt-4">
+				@include('inc.messages')
 				@yield('content')
 		 	</div>
     </body>

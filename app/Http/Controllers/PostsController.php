@@ -26,7 +26,7 @@ class PostsController extends Controller
 	 */
 	public function create()
 	{
-		//
+		return view('post.create');
 	}
 
 	/**
@@ -37,7 +37,20 @@ class PostsController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		$validateData = $request->validate([
+			'title' => 'required',
+			'body' => 'required'
+		]);
+
+		$post = new Post();
+		$post->title = $request->input('title');
+		$post->body = $request->input('body');
+
+		$post->save();
+
+		$posts = Post::all();
+
+		return view('post.index')->with('posts', $posts);
 	}
 
 	/**
@@ -48,7 +61,7 @@ class PostsController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		return $id;
 	}
 
 	/**
