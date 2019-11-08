@@ -50,7 +50,7 @@ class PostsController extends Controller
 
 		$posts = Post::all();
 
-		return view('post.index')->with('posts', $posts);
+		return redirect('/')->with('success', 'New Post Created');
 	}
 
 	/**
@@ -61,7 +61,9 @@ class PostsController extends Controller
 	 */
 	public function show($id)
 	{
-		return $id;
+
+		$post = Post::find($id);
+		return view('post.show')->with('post', $post);
 	}
 
 	/**
@@ -71,9 +73,7 @@ class PostsController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id)
-	{
-		//
-	}
+	{ }
 
 	/**
 	 * Update the specified resource in storage.
@@ -84,7 +84,20 @@ class PostsController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		//
+		$validateData = $request->validate([
+			'title' => 'required',
+			'body' => 'required'
+		]);
+
+		$post = Post::find($id);
+		$post->title = $request->input('title');
+		$post->body = $request->input('body');
+
+		$post->save();
+
+		$posts = Post::all();
+
+		return view('post.index')->with('posts', $posts);
 	}
 
 	/**
@@ -95,6 +108,8 @@ class PostsController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//
+		Post::destroy($id);
+
+		return redirect('/')->with('success', 'Post deleted successfuly');
 	}
 }
